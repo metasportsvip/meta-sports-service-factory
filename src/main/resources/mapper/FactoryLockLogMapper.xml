@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.factory.mapper.FactoryLockLogMapper">
+    <sql id="_table">
+        `factory_lock_log`
+    </sql>
+    <sql id="_flied">
+        id, fid, uid, amount, `timestamp`, `type`, createTime, updateTime
+    </sql>
+
+    <insert id="insert" parameterType="com.example.factory.bean.po.FactoryLockLog">
+        INSERT INTO
+        <include refid="_table"/>
+        (fid, uid, amount, `timestamp`, `type`)
+        VALUES
+        (#{fid}, #{uid}, #{amount}, #{timestamp}, #{type})
+    </insert>
+
+</mapper>

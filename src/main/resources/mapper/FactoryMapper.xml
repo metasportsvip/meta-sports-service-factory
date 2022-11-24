@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.factory.mapper.FactoryMapper">
+    <sql id="_table">
+        `factory`
+    </sql>
+    <sql id="_flied">
+        fid, uid, `name`, NFT, amountLock, expireTime, status, createTime, updateTime
+    </sql>
+
+    <resultMap id="infoMap" type="com.example.factory.bean.po.Factory">
+        <result property="fid" column="fid"/>
+        <result property="uid" column="uid"/>
+        <result property="name" column="name"/>
+        <result property="amountLock" column="amountLock"/>
+        <result property="expireTime" column="expireTime"/>
+        <result property="status" column="status"/>
+        <result property="createTime" column="createTime"/>
+        <result property="updateTime" column="updateTime"/>
+    </resultMap>
+
+    <select id="listByStatus" resultMap="infoMap">
+        SELECT
+        <include refid="_flied"/>
+        FROM
+        <include refid="_table"/>
+        WHERE
+        status = #{status}
+    </select>
+
+</mapper>

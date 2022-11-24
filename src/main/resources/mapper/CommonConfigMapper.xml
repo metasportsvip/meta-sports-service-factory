@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.factory.mapper.CommonConfigMapper">
+
+    <resultMap id="infoMapper" type="com.example.factory.bean.po.CommonConfig">
+        <result property="key" column="key"/>
+        <result property="value" column="value"/>
+    </resultMap>
+
+    <sql id="_table">
+        `common_config`
+    </sql>
+
+    <select id="getInfoByKey" resultMap="infoMapper">
+        SELECT
+        `key`, `value`
+        FROM
+        <include refid="_table"/>
+        WHERE `key` = #{key} LIMIT 1
+    </select>
+
+</mapper>

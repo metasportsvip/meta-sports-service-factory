@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.factory.mapper.FactoryProfitClaimMapper">
+    <sql id="_table">
+        `factory_profit_claim`
+    </sql>
+    <sql id="_flied">
+        id, fid, uid, unclaimedProfit, cumulativeProfit, createTime, updateTime
+    </sql>
+
+    <insert id="create" parameterType="com.example.factory.bean.po.FactoryProfitClaim">
+        INSERT INTO
+        <include refid="_table"/>
+        (fid, uid)
+        VALUES
+        (#{fid}, #{uid})
+    </insert>
+
+    <select id="infoByForUpdate" resultType="com.example.factory.bean.po.FactoryProfitClaim">
+        SELECT
+        <include refid="_flied"/>
+        FROM
+        <include refid="_table"/>
+        WHERE
+        fid = #{fid}
+        AND uid = #{uid} for update
+    </select>
+
+    <update id="updateProfit">
+        UPDATE
+        <include refid="_table"/>
+        SET
+        unclaimedProfit = unclaimedProfit - #{amount},
+        cumulativeProfit = cumulativeProfit + #{amount}
+        WHERE
+        uid = #{uid}
+        AND fid = #{fid}
+    </update>
+
+
+</mapper>
