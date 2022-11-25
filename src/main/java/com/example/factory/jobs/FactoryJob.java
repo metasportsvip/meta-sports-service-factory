@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * MiningJob
+ * FactoryJob
  *
  * @author cc
  */
@@ -87,6 +87,10 @@ public class FactoryJob {
         MST_USDT = new BigDecimal(commonConfigService.getInfoByKey(SystemConfig.KEY_MST_USDT_PRICE).getValue());
     }
     public void processing() {
+        if (factoryList.size() == 0) {
+            log.info("无能量工厂");
+            return;
+        }
         factoryList.forEach(factory -> {
             Long fid = factory.getFid();
             Long uid = factory.getUid();
@@ -103,6 +107,10 @@ public class FactoryJob {
         });
     }
     public void execute() {
+        if (profitClaimUpdateBOS.size() == 0) {
+            log.info("无产出收益");
+            return;
+        }
         factoryProfitClaimService.addProfitAll(profitClaimUpdateBOS);
     }
     public void clear() {
