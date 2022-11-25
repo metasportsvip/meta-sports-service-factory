@@ -111,7 +111,7 @@ public class FactoryJob {
             log.info("无产出收益");
             return;
         }
-        factoryProfitClaimService.addProfitAll(profitClaimUpdateBOS);
+        factoryProfitClaimService.profitEx(profitClaimUpdateBOS);
     }
     public void clear() {
         factoryList.clear();

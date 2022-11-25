@@ -30,12 +30,33 @@
         UPDATE
         <include refid="_table"/>
         SET
-        unclaimedProfit = unclaimedProfit - #{amount},
-        cumulativeProfit = cumulativeProfit + #{amount}
+        unclaimedProfit = unclaimedProfit + #{amount}
         WHERE
         uid = #{uid}
         AND fid = #{fid}
     </update>
 
+
+    <select id="factoryProjectDateList" resultType="com.example.factory.bean.po.FactoryProfitDate">
+        SELECT uid, fid, `date`, profit FROM factory_profit_date WHERE `date` = #{date}
+    </select>
+
+    <insert id="insertDateProfit" parameterType="com.example.factory.bean.po.FactoryProfitDate">
+        INSERT INTO
+        factory_profit_date
+        (uid, fid, date, profit)
+        VALUES
+        <foreach collection="factoryProfitDates" item="item" separator=",">
+            (#{item.uid}, #{item.fid}, #{item.date}, #{item.profit})
+        </foreach>
+    </insert>
+
+    <update id="updateDateProfit" parameterType="com.example.factory.bean.po.FactoryProfitDate">
+        <foreach collection="factoryProfitDates" item="item" separator=";">
+            UPDATE factory_profit_date
+            SET profit = profit + #{item.profit}
+            WHERE uid = #{item.uid} AND fid = #{item.fid} AND `date` = #{item.date}
+        </foreach>
+    </update>
 
 </mapper>

@@ -15,5 +15,9 @@ public interface FactoryProfitClaimService {
 
     void updateProfit(Long fig, Long uid, BigDecimal amount);
 
+    void profitEx(List<ProfitClaimUpdateBO> profitClaimUpdateList);
+
     void addProfitAll(List<ProfitClaimUpdateBO> profitClaimUpdateList);
+
+    void addDateProfit(List<ProfitClaimUpdateBO> profitClaimUpdateList);
 }

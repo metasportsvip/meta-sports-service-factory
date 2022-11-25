@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 public class FactoryProfitDate {
     private Long id;
     private Long uid;
-    private Long nid;
+    private Long fid;
     private Long date;
     private BigDecimal profit;
     private String createTime;
