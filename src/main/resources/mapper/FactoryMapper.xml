@@ -5,13 +5,12 @@
         `factory`
     </sql>
     <sql id="_flied">
-        fid, uid, `name`, NFT, amountLock, expireTime, status, createTime, updateTime
+        fid, uid, NFT, amountLock, expireTime, status, createTime, updateTime
     </sql>
 
     <resultMap id="infoMap" type="com.example.factory.bean.po.Factory">
         <result property="fid" column="fid"/>
         <result property="uid" column="uid"/>
-        <result property="name" column="name"/>
         <result property="amountLock" column="amountLock"/>
         <result property="expireTime" column="expireTime"/>
         <result property="status" column="status"/>

@@ -12,7 +12,6 @@ import java.math.BigDecimal;
 public class Factory {
     private Long fid;
     private Long uid;
-    private String name;
     private BigDecimal amountLock;
     private Long expireTime;
     private Integer status;
