@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,7 +96,7 @@ public class FactoryJob {
             Long fid = factory.getFid();
             Long uid = factory.getUid();
             if (factory.getAmountLock().compareTo(BigDecimal.ZERO) > 0 && currentUnixTime <= factory.getExpireTime()) {
-                BigDecimal profit = factory.getAmountLock().multiply(profit_rate).multiply(MST_USDT);
+                BigDecimal profit = factory.getAmountLock().multiply(profit_rate).divide(SystemConfig.TOTAL_FACTORY_PROFIT_TIMES, 18, RoundingMode.FLOOR).multiply(MST_USDT);
                 ProfitClaimUpdateBO profitClaimUpdate = new ProfitClaimUpdateBO();
                 profitClaimUpdate.setFid(fid);
                 profitClaimUpdate.setUid(uid);
